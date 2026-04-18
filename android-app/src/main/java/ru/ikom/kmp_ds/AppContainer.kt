@@ -1,20 +1,19 @@
 package ru.ikom.kmp_ds
 
-import android.app.Application
 import ru.ikom.kmp_ds.di.AndroidPlatformModule
 import ru.ikom.kmp_ds.di.DefaultKMPModule
 import ru.ikom.kmp_ds.di.KMPModule
 import ru.ikom.kmp_ds.di.PlatformModule
+import ru.ikom.kmp_ds.domain.PostsRepository
 
-class App : Application() {
+interface AppContainer {
+    val postsRepository: PostsRepository
+}
 
+class DefaultAppContainer : AppContainer {
     private val platformModule: PlatformModule = AndroidPlatformModule()
 
     private val kmpModule: KMPModule = DefaultKMPModule(platformModule)
 
-    val appContainer: AppContainer = DefaultAppContainer(kmpModule)
-
-    override fun onCreate() {
-        super.onCreate()
-    }
+    override val postsRepository: PostsRepository = kmpModule.postsRepository
 }

@@ -30,4 +30,4 @@ dependencyResolutionManagement {
 
 include(":composeApp")
 include(":shared")
-include(":kmp-ds")
+include(":android-app")
