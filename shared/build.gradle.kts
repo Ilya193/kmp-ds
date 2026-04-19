@@ -23,6 +23,8 @@ kotlin {
     sourceSets {
         commonMain.dependencies {
             implementation(libs.ktor.client.core)
+            implementation("androidx.datastore:datastore:1.2.1")
+            implementation("androidx.datastore:datastore-preferences:1.2.1")
         }
         iosMain.dependencies {
             implementation(libs.ktor.client.darwin)

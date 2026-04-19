@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.CancellationException
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
@@ -23,6 +24,12 @@ class MainViewModel(
                 throw e
             } catch (e: Exception) {
                 println(e)
+            }
+        }
+
+        viewModelScope.launch {
+            postsRepository.getPostsAsFlow().collect {
+                println("s149 postsAsFlow $it")
             }
         }
     }

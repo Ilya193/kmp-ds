@@ -1,5 +1,6 @@
 package ru.ikom.kmp_ds.di
 
+import ru.ikom.kmp_ds.data.local.DefaultPostsLocalDataSource
 import ru.ikom.kmp_ds.data.remote.DefaultPostsRemoteDataSource
 import ru.ikom.kmp_ds.data.repository.DefaultPostsRepository
 import ru.ikom.kmp_ds.domain.PostsRepository
@@ -13,5 +14,8 @@ class DefaultKMPModule(
 ) : KMPModule, PlatformModule by platformModule {
 
     override val postsRepository: PostsRepository =
-        DefaultPostsRepository(postsRemoteDataSource = DefaultPostsRemoteDataSource(httpClient))
+        DefaultPostsRepository(
+            postsRemoteDataSource = DefaultPostsRemoteDataSource(httpClient),
+            postsLocalDataSource = DefaultPostsLocalDataSource(dataStore)
+        )
 }

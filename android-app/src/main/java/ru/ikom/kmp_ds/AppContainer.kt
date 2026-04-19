@@ -1,5 +1,6 @@
 package ru.ikom.kmp_ds
 
+import android.content.Context
 import ru.ikom.kmp_ds.di.AndroidPlatformModule
 import ru.ikom.kmp_ds.di.DefaultKMPModule
 import ru.ikom.kmp_ds.di.KMPModule
@@ -10,8 +11,10 @@ interface AppContainer {
     val postsRepository: PostsRepository
 }
 
-class DefaultAppContainer : AppContainer {
-    private val platformModule: PlatformModule = AndroidPlatformModule()
+class DefaultAppContainer(
+    private val context: Context
+) : AppContainer {
+    private val platformModule: PlatformModule = AndroidPlatformModule(context)
 
     private val kmpModule: KMPModule = DefaultKMPModule(platformModule)
 
